@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if items_response %}
+
+
+<div class="panel panel-primary">
+  <div style="background-color: #87c0ba; color: #fff; border-color: #87c0ba;     padding: 10px 15px;
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;">Listas de Publicaciónes</div>
+  <div class="panel-body">
+    <table class="table table-condensed">
+        <thead> 
+            <tr> 
+                <th>#</th>
+                <th>Codigo</th> 
+                <th>Title</th> 
+                <th>Precio</th> 
+                <th>Disponibilidad</th> 
+            </tr> 
+        </thead>
+        <tbody>
+            {% for item in items_response %}
+            <tr>
+                <td><img src="{{item.thumbnail}}" width="45" height="45"></td>
+                <td>{{item.id}}</td>
+                <td>{{item.title}}</td>
+                <td>{{item.price}}</td>
+                <td>{{item.available_quantity}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+  </div>
+</div>
+
+{% endif %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }}">
+  <strong>info!</strong> {{ message }}
+</div>
+{% endfor %}
+{% endif %}
+{% endblock %}

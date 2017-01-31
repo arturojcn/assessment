@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }}">
+  <strong>info!</strong> {{ message }}
+</div>
+{% endfor %}
+{% endif %}
+<div class="container">    
+    <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
+        <div class=" text-center">
+            <h1 class="jumbotron-heading">Publicar</h1>
+        </div>
+        <div class="panel panel-info" >
+
+
+ 
+
+            <div class="panel-heading">
+                <div class="panel-title text-center">Publicar un producto</div>
+            </div>  
+            <form class="form-contact" action="{% url 'product' %}" method="POST">
+                {% csrf_token %} 
+                {% for field in form %}
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">{{field.label}}</label>
+                        {{field}}
+                        <p class="help-block">{{ field.help_text }} </p>
+                    </div>
+                {% endfor %}
+                <input type="submit" value="Submit"  class="btn btn-primary">
+            </form>
+        </div>
+
+    </div>
+</div>
+
+
+{% endblock %}
+
