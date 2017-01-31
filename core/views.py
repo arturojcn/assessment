@@ -59,7 +59,7 @@ def product(request):
 @login_required
 def list_products(request):
     """Lisado de Publicaciones 'status': 'active',  """
-    params = {'access_token' : request.session.get('access_token')}
+    params = {'status': 'active', 'access_token' : request.session.get('access_token')}
     response_products = meli.get(
         '/users/{}/items/search'.format(request.session.get('meli_id')),
         params
